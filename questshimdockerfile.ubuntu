@@ -1,0 +1,55 @@
+# Use Ubuntu 24.04 as base
+FROM ubuntu:24.04
+
+# Environment variables
+ENV DEBIAN_FRONTEND=noninteractive
+ENV SHIM_REPO=https://github.com/rhboot/shim.git
+ENV SHIM_DIR=/opt/shim
+ENV VENDOR_CERT_FILE=/opt/shim/vendor_cert_file
+ENV OUTPUT_DIR=/output
+
+# Install build dependencies
+RUN apt-get update && \
+    apt-get install -y \
+        build-essential \
+        autoconf \
+        automake \
+        autotools-dev \
+        libtool \
+        uuid-dev \
+        gnu-efi \
+        git \
+        pkg-config \
+        wget \
+        openssl \
+        ca-certificates \
+        curl \
+        flex \
+        bison \
+        python3 \
+        python3-pip \
+    && rm -rf /var/lib/apt/lists/*
+
+# Clone shim repository
+RUN git clone $SHIM_REPO $SHIM_DIR
+
+# Set working directory
+WORKDIR $SHIM_DIR
+
+# Copy DER certificate into container (assumes it's next to Dockerfile)
+COPY quest_cert.der $VENDOR_CERT_FILE
+
+# Create output directory
+RUN mkdir -p $OUTPUT_DIR
+
+# Build shim binaries and capture logs
+RUN make VENDOR_CERT_FILE=$VENDOR_CERT_FILE > $OUTPUT_DIR/build.log 2>&1
+
+# Copy binaries to output folder
+RUN cp shimx64.efi $OUTPUT_DIR/
+
+# Generate SHA256 checksums
+RUN sha256sum $OUTPUT_DIR/shimx64.efi $VENDOR_CERT_FILE > $OUTPUT_DIR/checksums.txt
+
+# Default command: list output files
+CMD ["ls", "-lh", "/output"]
