@@ -81,7 +81,7 @@ You will be asked to post the contents of these mails in your `shim-review` issu
 - Name: Nitesh Sheth
 - Position: Software Developer
 - Email address: nitesh.sheth@quest.com
-- PGP key fingerprint: 2D7E FEDD 386E 2918 F2AE  5584 3E64 86A2 25B7 764E
+- PGP key fingerprint: 2D7EFEDD386E2918F2AE55843E6486A225B7764E
 
 The contacts are not verified
 
