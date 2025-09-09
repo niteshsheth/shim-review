@@ -81,7 +81,7 @@ You will be asked to post the contents of these mails in your `shim-review` issu
 - Name: Nitesh Sheth
 - Position: Software Developer
 - Email address: nitesh.sheth@quest.com
-- PGP key fingerprint:
+- PGP key fingerprint: 2D7E FEDD 386E 2918 F2AE  5584 3E64 86A2 25B7 764E
 
 The contacts are not verified
 
@@ -92,10 +92,10 @@ well known in the Linux community.)
 *******************************************************************************
 ### Who is the secondary contact for security updates, etc.?
 *******************************************************************************
-- Name: N/A
-- Position: N/A
-- Email address: N/A
-- PGP key fingerprint: N/A
+- Name: Rahul Patil
+- Position: Software Developer
+- Email address: rahul.patil@quest.com
+- PGP key fingerprint: 0C1DEA40E3B2D93C514605138CADE59367387B8C
 
 (Key should be signed by the other security contacts, pushed to a keyserver
 like keyserver.ubuntu.com, and preferably have signatures that are reasonably
